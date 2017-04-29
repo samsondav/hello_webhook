@@ -17,6 +17,10 @@ defmodule HelloWebhook.Endpoint do
     {:ok, _} = Plug.Adapters.Cowboy.http(__MODULE__, [], port: port)
   end
 
+  get "/hello" do
+    send_resp(conn, 200, "Hello, world!")
+  end
+
   post "/hello" do
     {status, body} =
       case conn.body_params do
